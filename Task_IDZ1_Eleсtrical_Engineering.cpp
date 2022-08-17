@@ -8,6 +8,115 @@
 #include<algorithm>
 #include<iomanip>
 using namespace std; 
+
+long long NOD(long long num, long long denom) {
+	long long a = abs(num), b = abs(denom);
+	while (a > 0 && b > 0) {
+		if (a > b) {
+			a %= b;
+		}
+		else {
+			b %= a;
+		}
+
+	}
+	return a + b;
+}
+class Rational {
+public:
+	Rational() {
+		Numer = 0;
+		Denom = 1;
+	}
+	Rational(const Rational& other) {
+		this->Numer = other.Numer;
+		this->Denom = other.Denom;
+	}
+
+	Rational(long long numerator, long long denominator) {
+		if (denominator <= 0) {
+			throw invalid_argument("Invalid argument");
+
+		}
+		if (numerator == 0) {
+			Numer = 0;
+			Denom = 1;
+		}
+		else {
+			long long nod = NOD(numerator, denominator);
+			Numer = numerator / nod;
+			Denom = denominator / nod;
+			if (Denom < 0) {
+				Numer *= -1;
+				Denom *= -1;
+			}
+		}
+	}
+
+	long long Numerator() const {
+		return Numer;
+	}
+
+	long long Denominator() const {
+		return Denom;
+	}
+
+private:
+	long long Numer;
+	long long Denom;
+};
+Rational operator+(const Rational& lhs, const Rational& rhs) {
+	return { lhs.Numerator() * rhs.Denominator() + rhs.Numerator() * lhs.Denominator(),
+		lhs.Denominator() * rhs.Denominator() };
+}
+Rational operator-(const Rational& lhs, const Rational& rhs) {
+	return { lhs.Numerator() * rhs.Denominator() - rhs.Numerator() * lhs.Denominator(),
+		lhs.Denominator() * rhs.Denominator() };
+}
+bool operator==(const Rational& lhs, const Rational& rhs) {
+	return lhs.Numerator() * rhs.Denominator() == rhs.Numerator() * lhs.Denominator();
+}
+bool operator<(const Rational& lhs, const Rational& rhs) {
+	return lhs.Numerator() * rhs.Denominator() < rhs.Numerator() * lhs.Denominator();
+}
+Rational operator*(const Rational& lhs, const Rational& rhs) {
+	return { lhs.Numerator() * rhs.Numerator(),lhs.Denominator() * rhs.Denominator() };
+}
+Rational operator/(const Rational& lhs, const Rational& rhs) {
+	if (rhs.Numerator() == 0) {
+		throw domain_error("");
+	}
+	return { lhs.Numerator() * rhs.Denominator(),lhs.Denominator() * rhs.Numerator() };
+}
+istream& operator>>(istream& input, Rational& r) {
+	long long n, d;
+	char c;
+	if (input) {
+		input >> n >> c >> d;
+		if (input) {
+			if (c == '/') {
+				r = Rational(n, d);
+			}
+			//else {
+			//    input.setstate(ios_base::failbit);
+			//}
+		}
+		return input;
+	}
+}
+ostream& operator<<(ostream& output, const Rational& r) {
+	if(r.Denominator()==1)
+		output << r.Numerator();
+	else
+		output << r.Numerator() << '/' << r.Denominator();
+	return output;
+}
+Rational TransformDoubletoRational(const double&d){
+	long long Numerator, Denominator;
+	double I=(int)d;
+	Rational Int((long long)d,1), Float((long long)((d-I)*1000000000000000), 1000000000000000);
+	return Int+Float;
+}
 class Branch
 {
 public:
@@ -232,8 +341,8 @@ void PrintVector(const vector<vector<double>>&coefs){
 	cout<<"//////////////////////////////////////////////////////\n";
 }
 void gayss(vector<vector<double>>&arrkoef, vector<Branch>&Branches, const int& n){
-	PrintVector(arrkoef);
 	double p, gyy;
+	PrintVector(arrkoef);
 	int i, l, g, h = n, j;
 	for (g = 0; g < n - 1; g++){
 		j = g + 1;//фактический номер строки
@@ -245,14 +354,13 @@ void gayss(vector<vector<double>>&arrkoef, vector<Branch>&Branches, const int& n
 			}
 			j++;
 		}
-		PrintVector(arrkoef);
 		for (i = g + 1; i < n; i++){//сводим к треугольному виду
 			gyy = arrkoef[i][g] / arrkoef[g][g];
 			for (l = g; l <= n; l++){
 				arrkoef[i][l] -= arrkoef[g][l] * gyy;
-			}
-			PrintVector(arrkoef);
+			}	
 		}
+		PrintVector(arrkoef);
 	}
 	for (i = 0; i < n; i++){// обратный ход
 		for (l = h; l < n; l++){
@@ -522,12 +630,13 @@ int main(){
 	cin >> qbrch;
 	cout << "Enter the quantity knots: ";
 	cin >> qknt;
-	vector<Branch> AllBrnchs(qbrch);//вектор всех ветвей
+	vector<Branch> AllBrnchs;//вектор всех ветвей
 	cout << "Enter the parameters for an each branches now, and set the direction of the current." << endl;//<<"Input format: number(string)',''start_knot_name','end_knot_name',E,R,J\nFirst of all input branchs without Current Sourse!";
 	//Получение всех необходимых данных
 	for (int i = 0; i < qbrch; i++)
 	{
 		string name, begink,endk;
+		Rational e,r,j;
 		double E,R,J;
 		cout<<"name: ";
 		cin>>name;
@@ -537,10 +646,13 @@ int main(){
 		cin>>endk;
 		cout<<" E = ";
 		cin>>E;
+		e = TransformDoubletoRational(E);
 		cout<<" R = ";
 		cin>>R;
+		r = TransformDoubletoRational(R);
 		cout<<" J = ";
 		cin>>J;
+		j = TransformDoubletoRational(J);
 		cout<<endl;
 		AllBrnchs.push_back({name,begink,endk,E,J,R});  
 	//	cin>>AllBrnchs[i];
