@@ -1,0 +1,76 @@
+Enter the quantity branches: 8
+Enter the quantity knots: 5
+Enter the parameters for an each branches now, and set the direction of the current.
+name: I1 c d 30
+ begin knot:  end knot:  E =  R = 0 0
+ J =
+Was calling destructor
+Was calling destructor
+Was calling destructor
+name: I2 d d 0 6 0
+ begin knot:  end knot:  E =  R =  J =
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+name: I3 b c 0 9 0
+ begin knot:  end knot:  E =  R =  J =
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+name: I4 a e 0 12 0
+ begin knot:  end knot:  E =  R =  J =
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+name: I5 b e 0 15 0
+ begin knot:  end knot:  E =  R =  J =
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+name: I6 c e 0 18 0
+ begin knot:  end knot:  E =  R =  J =
+Was calling destructor
+Was calling destructor
+Was calling destructor
+name: I7 a b 60 0 0
+ begin knot:  end knot:  E =  R =  J =
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+Was calling destructor
+name: J1 d a 0 3 3
+
+
+
+I7 a b 60 0 0 I2 d b 0 6 0 I3 b c 0 9 0 I4 a e 0 12 0 I1 c d 30 0 0 I5 b e 0 15 0 I6 c e 0 18 0 J1 d a 0 3 3
