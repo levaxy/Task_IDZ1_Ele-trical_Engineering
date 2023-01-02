@@ -141,8 +141,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Rational\Rational.cpp" />
+    <ClCompile Include="Branch\Branch.cpp" />
+    <ClCompile Include="Kirchhgoff%27s_Lows\KL.cpp" />
+    <ClCompile Include="Knot\Knot.cpp" />
+    <ClCompile Include="Konturs\Konturs.cpp" />
+    <ClCompile Include="MKC\MKC.cpp" />
+    <ClCompile Include="MKP\MKP.cpp" />
+    <ClCompile Include="Rational\Rational.cpp" />
+    <ClCompile Include="Shared.cpp" />
     <ClCompile Include="Task_IDZ1_Eleсtrical_Engineering.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Branch\Branch.h" />
+    <ClInclude Include="Kirchhgoff%27s_Lows\KL.h" />
+    <ClInclude Include="Knot\Knot.h" />
+    <ClInclude Include="Konturs\Konturs.h" />
+    <ClInclude Include="MKC\MKC.h" />
+    <ClInclude Include="MKP\MKP.h" />
+    <ClInclude Include="Rational\Rational.h" />
+    <ClInclude Include="Shared.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
