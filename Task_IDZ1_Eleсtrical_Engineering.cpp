@@ -16,7 +16,10 @@
 #include"..\Task_IDZ1_Eleсtrical_Engineering\MKC\MKC.h"
 #include"..\Task_IDZ1_Eleсtrical_Engineering\Kirchhgoff's_Lows\KL.h"
 using namespace std;
-
+/// <summary>
+/// Эта ебаная строчка типа чёто изменилось
+/// </summary>
+/// <returns></returns>
 int main(){
 	setlocale(LC_ALL ,"rus");
 	vector<Branch> UnkCurBranch;//вектор всех неизвестных ветвей
